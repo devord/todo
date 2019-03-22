@@ -8,10 +8,21 @@ A simple To-Do list
 
 The server is a Django project and lives in the `todo/` directory.
 
-To run locally, do:
+To run locally, enter the directory and:
+
 - Create the Python3 virtual environment
   ```shell
-  python3 -m virtualenv -p python3 venv
+  make venv
+  ```
+
+- Run the development server
+  ```shell
   . venv/bin/activate
-  pip3 install -r requirements.txt
+  make
+  ./manage.py runserver
+  ```
+
+- Test the API endpoints
+  ```shell
+  http http://localhost:8000/api/items/
   ```
