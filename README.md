@@ -15,10 +15,14 @@ To run locally, enter the directory and:
   make venv
   ```
 
-- Run the development server
+- Create development database, migrate and add initial data
   ```shell
   . venv/bin/activate
   make
+  ```
+
+- Run the development server
+  ```shell
   ./manage.py runserver
   ```
 
