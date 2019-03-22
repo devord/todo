@@ -7,7 +7,7 @@ is_venv:
 
 venv:
 	python3 -m virtualenv -p python3 venv
-	venv/bin/pip3 install -r requirements.txt
+	venv/bin/pip3 install -r requirements.txt --isolated --ignore-installed
 
 rm-db:
 	rm ./db.sqlite3
