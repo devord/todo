@@ -10,7 +10,7 @@ venv:
 	venv/bin/pip3 install -r requirements.txt --isolated --ignore-installed
 
 rm-db:
-	rm ./db.sqlite3
+	rm -f ./db.sqlite3
 
 migrate: is_venv
 	./manage.py migrate
