@@ -4,8 +4,8 @@ A React web app for [TODO](https://github.com/devord/todo).
 
 ## Quick Start
 
-Make sure [Node.js](https://nodejs.org/) and [Yarn](https://yarnpkg.com/) are
-installed on your system.
+Make sure [Node.js 8+](https://nodejs.org/)
+and [Yarn 1.10+](https://yarnpkg.com/) are installed on your system.
 
 To run locally, do:
 
