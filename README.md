@@ -9,8 +9,8 @@ readme [here](./todo/README.md).
 
 ## Web App
 
-The web app is a React project and lives in the `todo-web/` directory. Check
-its readme [here](./todo-web/README.md).
+The web app is a React project with TypeScript and lives in the `todo-web/`
+directory. Check its readme [here](./todo-web/README.md).
 
 ## License
 
