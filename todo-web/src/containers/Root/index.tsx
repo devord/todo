@@ -1,9 +1,13 @@
 import React from 'react'
 
+import { Content, Header } from './components'
+import * as Styled from './index.styled'
+
 const Root = () => (
-  <React.Fragment>
-    TODO
-  </React.Fragment>
+  <Styled.Root>
+    <Header />
+    <Content />
+  </Styled.Root>
 )
 
 export default Root
