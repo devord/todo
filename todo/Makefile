@@ -6,8 +6,7 @@ is_venv:
 	test `env | grep '^VIRTUAL_ENV'`
 
 venv:
-	python3 -m virtualenv -p python3 venv
-	venv/bin/pip3 install -r requirements.txt --isolated --ignore-installed
+	pipenv install
 
 rm-db:
 	rm -f ./db.sqlite3
