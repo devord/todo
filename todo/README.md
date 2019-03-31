@@ -1,30 +1,30 @@
 # TODO Server
 
-The server is a [https://www.djangoproject.com/](Django) project. It uses
-Python 3.6 and [https://pipenv.readthedocs.io/en/latest/](Pipenv).
+The server is a [Django](https://www.djangoproject.com/) project. It uses
+Python 3.7 and [Pipenv](https://pipenv.readthedocs.io/en/latest/).
 
 ## How to Run
 
-To run the development server, do:
+First, setup the Python 3 environment. If you don't have Python 3.7, Pipenv
+will install it provided you have [pyenv](https://github.com/pyenv/pyenv)
+installed.
 
-- Create the Python3 virtual environment
-  ```shell
-  pipenv install
-  ```
+```shell
+pipenv install --dev
+pipenv shell
+```
 
-- Create development database, migrate and add initial data
-  ```shell
-  pipenv shell
-  make
-  ```
+Then, create the development database, migrate and add initial data.
+```shell
+make
+```
 
-- Run the development server
-  ```shell
-  pipenv shell
-  ./manage.py runserver
-  ```
+Finally, run the development server.
+```shell
+./manage.py runserver
+```
 
-- Test the API endpoints (using [https://httpie.org/](Httpie))
-  ```shell
-  http http://localhost:8000/api/items/
-  ```
+You can use [Httpie](https://httpie.org/) to test the API endpoints.
+```shell
+http http://localhost:8000/api/items/
+```
