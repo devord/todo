@@ -24,7 +24,7 @@ Finally, run the development server.
 ./manage.py runserver
 ```
 
-You can use [Httpie](https://httpie.org/) to test the API endpoints.
+You can use [HTTPie](https://httpie.org/) to test the API endpoints.
 ```shell
 http http://localhost:8000/api/items/
 ```
