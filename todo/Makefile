@@ -15,4 +15,4 @@ add-admin: is-venv
 	./manage.py shell -c "from django.contrib.auth import get_user_model; get_user_model().objects.create_superuser('admin', 'admin@todo.com', 'adminadmin')"
 
 add-mock-data: is-venv
-	./manage.py shell -c "from api.mock_helper import generate_mock_data; generate_mock_data()"
+	./manage.py shell -c "from api.mock_helper import generate_mock_data; generate_mock_data(10, 100)"

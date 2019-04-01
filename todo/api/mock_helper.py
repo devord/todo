@@ -1,29 +1,27 @@
+import random
+
+from faker import Faker
+from faker.providers import lorem
+
 from api.models import Label, Item
 
 
-LABELS = [
-    'Blue',
-    'Green',
-    'Red',
-]
-
-ITEMS = [
-    ('Write', 'Write some articles', [0, 1]),
-    ('Run', 'Run a few miles', [0, 2]),
-    ('Eat', 'Breakfast, lunch and super', []),
-]
+def random_subset(elements):
+    return random.sample(elements, k=int(random.triangular(0, len(elements), 2)))
 
 
-def generate_mock_data():
+def generate_mock_data(num_labels, num_items):
+    fake = Faker()
+    fake.add_provider(lorem)
+
     labels = []
-    for name in LABELS:
-        label = Label(name=name)
+    for _ in range(num_labels):
+        label = Label(name=fake.word())
         label.save()
         labels.append(label)
 
-    for title, description, label_ids in ITEMS:
-        item = Item(title=title,
-                    description=description)
+    for _ in range(num_items):
+        item = Item(title=fake.sentence(),
+                    description=fake.paragraph())
         item.save()
-        for lid in label_ids:
-            item.labels.add(labels[lid])
+        item.labels.add(*random_subset(labels))
