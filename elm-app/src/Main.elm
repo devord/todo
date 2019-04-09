@@ -1,20 +1,56 @@
-module Main exposing (..)
+module Main exposing (main)
 
 import Browser
-import Html exposing (Html, text, div, h1, img)
-import Html.Attributes exposing (src)
+import Element exposing (Element, fill)
+import Html exposing (Html)
+import Http
+import Json.Decode exposing (Decoder, field, int, list, map2, string)
+import RemoteData exposing (RemoteData(..), WebData)
+
 
 
 ---- MODEL ----
 
 
+type alias Item =
+    { title : String
+    , id : Int
+    }
+
+
+type alias Items =
+    List Item
+
+
+decodeItem : Decoder Item
+decodeItem =
+    Json.Decode.map2 Item
+        (field "title" string)
+        (field "id" int)
+
+
+decodeItems : Decoder Items
+decodeItems =
+    field "results" (list decodeItem)
+
+
+getItems : Cmd Msg
+getItems =
+    Http.get
+        { url = "/api/items/"
+        , expect = Http.expectJson (RemoteData.fromResult >> ItemsResponse) decodeItems
+        }
+
+
 type alias Model =
-    {}
+    { items : WebData Items }
 
 
 init : ( Model, Cmd Msg )
 init =
-    ( {}, Cmd.none )
+    ( { items = Loading }
+    , getItems
+    )
 
 
 
@@ -22,24 +58,59 @@ init =
 
 
 type Msg
-    = NoOp
+    = ItemsResponse (WebData Items)
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
-    ( model, Cmd.none )
+    case msg of
+        ItemsResponse response ->
+            ( { model | items = response }
+            , Cmd.none
+            )
 
 
 
 ---- VIEW ----
 
 
+viewItemsTable : Items -> Element Msg
+viewItemsTable items =
+    Element.table []
+        { data = items
+        , columns =
+            [ { header = Element.text "ID"
+              , width = fill
+              , view = \i -> Element.text (String.fromInt i.id)
+              }
+            , { header = Element.text "Title"
+              , width = fill
+              , view = \i -> Element.text i.title
+              }
+            ]
+        }
+
+
+viewMaybeItemsTable : Model -> Element Msg
+viewMaybeItemsTable model =
+    case model.items of
+        NotAsked ->
+            Element.text "Initialising..."
+
+        Loading ->
+            Element.text "Loading..."
+
+        Failure _ ->
+            Element.text "Oops! Something went wrong."
+
+        Success items ->
+            viewItemsTable items
+
+
 view : Model -> Html Msg
 view model =
-    div []
-        [ img [ src "/logo.svg" ] []
-        , h1 [] [ text "Your Elm App is working!" ]
-        ]
+    Element.layout []
+        (viewMaybeItemsTable model)
 
 
 
