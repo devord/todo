@@ -1,6 +1,6 @@
-# TODO Web
+# TODO React Client
 
-A React web app for [TODO](https://github.com/devord/todo).
+A React web client for [TODO](https://github.com/devord/todo).
 
 ## Quick Start
 
