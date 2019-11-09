@@ -6,7 +6,7 @@ import * as Styled from './index.styled'
 
 const Header = () => (
   <Styled.Header>
-    <Typography variant='title'>
+    <Typography variant='h6'>
       TODO
     </Typography>
   </Styled.Header>
