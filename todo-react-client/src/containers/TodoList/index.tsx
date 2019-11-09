@@ -6,8 +6,8 @@ import {
   ListItem,
   ListItemText,
   ListItemSecondaryAction
-} from 'src/lib/material'
-import { Delete as DeleteIcon } from 'src/lib/material-icons'
+} from 'lib/material'
+import { Delete as DeleteIcon } from 'lib/material-icons'
 
 const items = [
   { title: 'Plan', tags: ['Blue'] },
@@ -19,11 +19,13 @@ const items = [
 const TodoList = () => (
   <React.Fragment>
     <List>
-      { items.map(({ title, tags }) => (
+      {items.map(({ title, tags }) => (
         <ListItem button divider>
           <ListItemText
             primary={title}
-            secondary={ tags.map(tag => <span>{ tag }</span>) }
+            secondary={tags.map(tag => (
+              <span>{tag}</span>
+            ))}
           />
           <ListItemSecondaryAction>
             <IconButton aria-label='Delete'>
@@ -31,7 +33,7 @@ const TodoList = () => (
             </IconButton>
           </ListItemSecondaryAction>
         </ListItem>
-      )) }
+      ))}
     </List>
   </React.Fragment>
 )

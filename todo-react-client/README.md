@@ -10,11 +10,13 @@ and [Yarn 1.10+](https://yarnpkg.com/) are installed on your system.
 To run locally, do:
 
 - Install dependencies
+
   ```shell
   yarn
   ```
 
 - Run the app
+
   ```shell
   yarn start
   ```

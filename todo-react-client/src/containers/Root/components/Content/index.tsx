@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { TodoList } from 'src/containers'
+import { TodoList } from 'containers'
 
 import * as Styled from './index.styled'
 

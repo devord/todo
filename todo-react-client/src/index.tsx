@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import { Root } from 'src/containers'
+import { Root } from 'containers'
 
 import * as serviceWorker from './serviceWorker'
 import './index.css'

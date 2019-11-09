@@ -5,7 +5,7 @@ export const Header = styled.div`
   align-items: center;
   justify-items: center;
   height: 3.5rem;
-  background-color: #EEE;
+  background-color: #eee;
 
   && > * {
     margin: 0 auto;

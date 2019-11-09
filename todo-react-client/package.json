@@ -15,6 +15,7 @@
     "@types/styled-components": "^4.4.0",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
+    "react-redux": "^7.1.3",
     "react-scripts": "^3.2.0",
     "styled-components": "^4.4.1",
     "typescript": "^3.7.2"
@@ -24,11 +25,17 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint --ext .js,.ts,.tsx .",
-    "lint-fix": "eslint --fix --ext js,ts,tsx ."
+    "lint": "prettier-standard --lint",
+    "lint-check": "prettier-standard --lint --check",
+    "precommit": "lint-staged"
   },
-  "eslintConfig": {
-    "extends": "react-app"
+  "lint-staged": {
+    "linters": {
+      "**/*": [
+        "prettier-standard --lint",
+        "git add"
+      ]
+    }
   },
   "browserslist": [
     ">0.2%",
@@ -37,12 +44,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^2.6.1",
-    "@typescript-eslint/parser": "^2.6.1",
-    "eslint-config-standard-with-typescript": "^10.0.0",
-    "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-node": "^10.0.0",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.1"
+    "lint-staged": "^10.0.0-1",
+    "prettier-standard": "^15.0.1"
   }
 }
