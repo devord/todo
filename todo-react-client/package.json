@@ -32,7 +32,8 @@
     "eject": "react-scripts eject",
     "lint": "prettier-standard --lint",
     "lint-check": "prettier-standard --lint --check",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "postbuild": "react-snap"
   },
   "lint-staged": {
     "linters": {
@@ -54,6 +55,7 @@
     "@types/redux-thunk": "^2.1.0",
     "lint-staged": "^10.0.0-1",
     "prettier-standard": "^15.0.1",
+    "react-snap": "^1.23.0",
     "redux-devtools-extension": "^2.13.8"
   }
 }
