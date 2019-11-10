@@ -124,9 +124,12 @@ REST_FRAMEWORK = {
 
 
 CORS_ORIGIN_WHITELIST = [
-    'https://nameless-gorge-27151.herokuapp.com',
     'http://localhost:3000',
     'http://127.0.0.1:3000'
+]
+
+CORS_ORIGIN_REGEX_WHITELIST = [
+    r"^https://.*devord-todo\.netlify.com$",
 ]
 
 # Activate Django-Heroku
