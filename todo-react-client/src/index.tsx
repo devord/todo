@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { hydrate, render } from 'react-dom'
 import thunk from 'redux-thunk'
 import { applyMiddleware, createStore } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
@@ -19,12 +19,19 @@ const store = createStore(
   composeEnhancers(applyMiddleware(thunk))
 )
 
-ReactDOM.render(
+const ConnectedRoot = () => (
   <Provider store={store}>
     <Root />
-  </Provider>,
-  document.getElementById('root')
+  </Provider>
 )
+
+const rootElement = document.getElementById('root')
+
+if (rootElement && rootElement.hasChildNodes()) {
+  hydrate(<ConnectedRoot />, rootElement)
+} else {
+  render(<ConnectedRoot />, rootElement)
+}
 
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister()
