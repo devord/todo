@@ -1,4 +1,5 @@
 import os
+import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -123,6 +124,10 @@ REST_FRAMEWORK = {
 
 
 CORS_ORIGIN_WHITELIST = [
-    "http://localhost:3000",
-    "http://127.0.0.1:3000"
+    'https://nameless-gorge-27151.herokuapp.com',
+    'http://localhost:3000',
+    'http://127.0.0.1:3000'
 ]
+
+# Activate Django-Heroku
+django_heroku.settings(locals())
