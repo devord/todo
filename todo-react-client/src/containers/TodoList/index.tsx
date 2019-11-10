@@ -1,4 +1,6 @@
 import React from 'react'
+import { isEmpty, map } from 'lodash/fp'
+import { useDispatch } from 'react-redux'
 
 import {
   IconButton,
@@ -8,34 +10,49 @@ import {
   ListItemSecondaryAction
 } from 'lib/material'
 import { Delete as DeleteIcon } from 'lib/material-icons'
+import { loadItems, loadLabels } from 'store/effects'
+import { getItems, getLabels } from 'store/selectors'
+import { useSelector } from 'store'
 
-const items = [
-  { title: 'Plan', tags: ['Blue'] },
-  { title: 'Implement', tags: ['Blue, Red, Yellow'] },
-  { title: 'Review', tags: ['Blue, Yellow'] },
-  { title: 'Deploy', tags: ['Red'] }
-]
+const TodoList = () => {
+  const dispatch = useDispatch()
 
-const TodoList = () => (
-  <React.Fragment>
+  const items = useSelector(getItems)
+
+  const labels = useSelector(getLabels)
+
+  React.useEffect(() => {
+    dispatch(loadItems())
+  }, [dispatch])
+
+  React.useEffect(() => {
+    if (isEmpty(labels)) {
+      dispatch(loadLabels())
+    }
+  }, [dispatch, labels])
+
+  return (
     <List>
-      {items.map(({ title, tags }) => (
-        <ListItem button divider>
-          <ListItemText
-            primary={title}
-            secondary={tags.map(tag => (
-              <span>{tag}</span>
-            ))}
-          />
-          <ListItemSecondaryAction>
-            <IconButton aria-label='Delete'>
-              <DeleteIcon />
-            </IconButton>
-          </ListItemSecondaryAction>
-        </ListItem>
-      ))}
+      {map(
+        item => (
+          <ListItem button divider key={item.id}>
+            <ListItemText
+              primary={item.title}
+              secondary={
+                <span>{map(label => label.name, item.labels).join(', ')}</span>
+              }
+            />
+            <ListItemSecondaryAction>
+              <IconButton aria-label='Delete'>
+                <DeleteIcon />
+              </IconButton>
+            </ListItemSecondaryAction>
+          </ListItem>
+        ),
+        items
+      )}
     </List>
-  </React.Fragment>
-)
+  )
+}
 
 export default TodoList
