@@ -1,4 +1,4 @@
-import { map, sortBy } from 'lodash/fp'
+import { compact, map, sortBy } from 'lodash/fp'
 
 import { ApplicationState } from 'store/types'
 
@@ -8,7 +8,7 @@ export const getItems = (state: ApplicationState) =>
     map(
       item => ({
         ...item,
-        labels: map(id => state.labels[id] || undefined, item.labels)
+        labels: compact(map(id => state.labels[id] || undefined, item.labels))
       }),
       state.items
     )
